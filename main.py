@@ -1,15 +1,25 @@
 from models.data_source import ambulances
-from utils.crud import login
+from utils.crud import login, main_menu, options_menu, display_ambulance, add_ambulance, remove_ambulanse, edit_ambulance
 # from utils.emap import single_map
 
-if __name__ == '__main__':
-    while True:
-        print("Welcome to the AmulanceApp  ")
-        print("0. Exit ")
-        print("1. Przejdź do systemu logowania ")
-        menu_option = input("Wybierz opcję: ")
-        if menu_option == "0":
-            break
-        if menu_option == "1":
-            login()
+print("Welcome to the AmulanceApp ")
+login()
+
+while True:
+    choice = main_menu()
+    if choice == "0":
+        break
+    if choice == "1":
+        choice_options = options_menu()
+        if choice_options == "1":
+            display_ambulance(ambulances)
+        if choice_options == "2":
+            add_ambulance(ambulances)
+        if choice_options == "3":
+            edit_ambulance(ambulances)
+        if choice_options == "4":
+            remove_ambulanse(ambulances)
+
+    else:
+        print("Opcja niedostępna.")
 
