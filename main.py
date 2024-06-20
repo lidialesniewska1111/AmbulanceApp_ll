@@ -1,11 +1,11 @@
 from models.data_source import ambulances
-from utils.crud import login, main_menu, options_menu, display_ambulance, add_ambulance, remove_ambulance, \
+from utils.crud import login, main_menu, options_menu, options_map, display_ambulance, add_ambulance, remove_ambulance, \
     edit_ambulance, display_employees, add_employee, edit_employee, delete_employee, display_patients, add_patient, edit_patient, delete_patient
 
-# from utils.emap import single_map
+from utils.emap import map_ambulance, map_employees, map_patients, map_employee_ambulance, map_patient_ambulance
 
-print("Welcome to the AmulanceApp ")
-login()
+# print("Welcome to the AmulanceApp ")
+# login()
 
 while True:
     choice = main_menu()
@@ -41,5 +41,17 @@ while True:
             edit_patient(ambulances)
         if choice_options == "4":
             delete_patient(ambulances)
+    elif choice == "4":
+        choice_options = options_map()
+        if choice_options == "1":
+            map_ambulance(ambulances)
+        if choice_options == "2":
+            map_employees(ambulances)
+        if choice_options == "3":
+            map_patients(ambulances)
+        if choice_options == "4":
+            map_employee_ambulance(ambulances)
+        if choice_options == "5":
+            map_patient_ambulance(ambulances)
     else:
         print("Opcja niedostępna.")

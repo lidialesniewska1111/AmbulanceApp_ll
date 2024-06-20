@@ -27,6 +27,15 @@ def options_menu():
     choice = input("Wybierz interesującą opcję: ")
     return choice
 
+def options_map():
+    print("Menu opcji map: ")
+    print("1.Mapa wszystkich Oddziałów Pogotowia Ratunkowego")
+    print("2.Mapa wszystkich pracowników Oddziałów Pogotowia Ratunkowego")
+    print("3.Mapa wszystkich pacjentów Oddziałów Pogotowia Ratunkowego")
+    print("4.Mapa pracowników wybranego Oddziału Pogotowia Ratunkowego")
+    print("5.Mapa pacjentów wybranego Oddziału Pogotowia Ratunkowego")
+    choice = input("Wybierz interesującą opcję: ")
+    return choice
 
 def display_ambulance(ambulances):
     for ambulance in ambulances:
@@ -77,9 +86,10 @@ def edit_ambulance(ambulances):
 
 
 def display_employees(ambulances):
+    ambulance_name = input("Podaj nazwę oddziału (brak wyboru pokaże wszystko): ")
     for ambulance in ambulances:
-        print("Odział Pogotowia Ratowniczego:", ambulance['name'])
-        print("Lista pracowników placówki: ")
+        if ambulance['name'] != ambulance_name and ambulance_name != "":
+            continue
         for employee in ambulance['employees']:
             print(f"{employee['name']} {employee['surname']} {employee['coordinates']}")
 
@@ -100,7 +110,7 @@ def edit_employee(ambulances):
     ambulance_name = input("Podaj nazwę oddziału, w którego chcesz edytować listę pracowników: ")
     for ambulance in ambulances:
         if ambulance['name'] == ambulance_name:
-            print("Lista pracowników w oddziału", ambulance_name, ":")
+            print("Lista pracowników oddziału", ambulance_name, ":")
             for employee in ambulance['employees']:
                 print(f"{employee['name']} {employee['surname']} {employee['coordinates']}")
             while True:
@@ -112,9 +122,10 @@ def edit_employee(ambulances):
                         print("Edycja pracownika", edit_choice)
                         employee['name'] = input("Podaj nowe imię: ")
                         employee['surname'] = input("Podaj nowe nazwisko: ")
-                        employee['latitude'] = float(input("Podaj nową szerokość geograficzną pracownika (lub pozostaw puste, aby nie zmieniać): "))
-                        employee['longitude'] = float(input("Podaj nową długość geograficzną pracownika (lub pozostaw puste, aby nie zmieniać): "))
-                        coordinates = (employee['longitude'], employee['latitude'])
+                        new_latitude = float(input("Podaj nową szerokość geograficzną pracownika: "))
+                        new_longitude = float(input("Podaj nową długość geograficzną pracownika: "))
+                        coordinates = (new_latitude, new_longitude)
+                        employee['coordinates'] ={'latitude': new_latitude, 'longitude': new_longitude}
                         print("Pracownik zedytowany pomyślnie!")
                         break
                 else:
@@ -144,9 +155,10 @@ def delete_employee(ambulances):
     print("Oddział o podanej nazwie nie został znaleziony w liście.")
 
 def display_patients(ambulances):
+    ambulance_name = input("Podaj nazwę oddziału (brak wyboru pokaże wszystko): ")
     for ambulance in ambulances:
-        print("Odział Pogotowia Ratowniczego:", ambulance['name'])
-        print("Lista pacjentów placówki: ")
+        if ambulance['name'] != ambulance_name and ambulance_name != "":
+            continue
         for patient in ambulance['patients']:
             print(f"{patient['name']} {patient['surname']} {patient['incident']} {patient['coordinates']}")
 
@@ -180,9 +192,10 @@ def edit_patient(ambulances):
                         patient['name'] = input("Podaj nowe imię: ")
                         patient['surname'] = input("Podaj nowe nazwisko: ")
                         patient['incident'] = input("Podaj nową przyczyne zgłoszenia: ")
-                        patient['latitude'] = float(input("Podaj nową szerokość geograficzną pacjenta (lub pozostaw puste, aby nie zmieniać): "))
-                        patient['longitude'] = float(input("Podaj nową długość geograficzną pacjenta (lub pozostaw puste, aby nie zmieniać): "))
-                        coordinates = (patient['longitude'], patient['latitude'])
+                        new_latitude = float(input("Podaj nową szerokość geograficzną pracownika: "))
+                        new_longitude = float(input("Podaj nową długość geograficzną pracownika: "))
+                        coordinates = (new_latitude, new_longitude)
+                        patient['coordinates'] ={'latitude': new_latitude, 'longitude': new_longitude}
                         print("Pacjent zedytowany pomyślnie!")
                         break
                 else:
