@@ -4,8 +4,8 @@ from utils.crud import login, main_menu, options_menu, options_map, display_ambu
 
 from utils.emap import map_ambulance, map_employees, map_patients, map_employee_ambulance, map_patient_ambulance
 
-# print("Welcome to the AmulanceApp ")
-# login()
+print("Welcome to the AmulanceApp ")
+login()
 
 while True:
     choice = main_menu()
