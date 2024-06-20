@@ -90,8 +90,8 @@ def add_employee(ambulances):
         if ambulance['name'] == name_ambulance:
             name = input("Podaj imię nowego pracownika: ")
             surname = input("Podaj nazwisko nowego pracownika: ")
-            latitude = float(input("Podaj szerokość geograficzną odziału: "))
-            longitude = float(input("Podaj długość geograficzną oddziału: "))
+            latitude = float(input("Podaj szerokość geograficzną pracownika: "))
+            longitude = float(input("Podaj długość geograficzną pracownika: "))
             coordinates = (longitude, latitude)
             ambulance['employees'].append({'name': name, 'surname': surname, 'coordinates': coordinates})
             print("Pracownik dodany pomyślnie!")
@@ -112,8 +112,8 @@ def edit_employee(ambulances):
                         print("Edycja pracownika", edit_choice)
                         employee['name'] = input("Podaj nowe imię: ")
                         employee['surname'] = input("Podaj nowe nazwisko: ")
-                        employee['latitude'] = float(input("Podaj nową szerokość geograficzną oddziału (lub pozostaw puste, aby nie zmieniać): "))
-                        employee['longitude'] = float(input("Podaj nową długość geograficzną oddziału (lub pozostaw puste, aby nie zmieniać): "))
+                        employee['latitude'] = float(input("Podaj nową szerokość geograficzną pracownika (lub pozostaw puste, aby nie zmieniać): "))
+                        employee['longitude'] = float(input("Podaj nową długość geograficzną pracownika (lub pozostaw puste, aby nie zmieniać): "))
                         coordinates = (employee['longitude'], employee['latitude'])
                         print("Pracownik zedytowany pomyślnie!")
                         break
@@ -140,5 +140,73 @@ def delete_employee(ambulances):
                         break
                 else:
                     print("Pracownik o podanym imieniu i nazwisku nie został znaleziony.")
+            return
+    print("Oddział o podanej nazwie nie został znaleziony w liście.")
+
+def display_patients(ambulances):
+    for ambulance in ambulances:
+        print("Odział Pogotowia Ratowniczego:", ambulance['name'])
+        print("Lista pacjentów placówki: ")
+        for patient in ambulance['patients']:
+            print(f"{patient['name']} {patient['surname']} {patient['incident']} {patient['coordinates']}")
+
+def add_patient(ambulances):
+    name_patient = input("Podaj nazwę oddziału, do której chcesz dodać pacjenta: ")
+    for ambulance in ambulances:
+        if ambulance['name'] == name_patient:
+            name = input("Podaj imię nowego pacjenta: ")
+            surname = input("Podaj nazwisko nowego pacjenta: ")
+            incident = input("Podaj przyczynę zgłoszenia: ")
+            latitude = float(input("Podaj szerokość geograficzną pacjenta: "))
+            longitude = float(input("Podaj długość geograficzną pacjenta: "))
+            coordinates = (longitude, latitude)
+            ambulance['patients'].append({'name': name, 'surname': surname, 'incident': incident, 'coordinates': coordinates})
+            print("Pacjent dodany pomyślnie!")
+
+def edit_patient(ambulances):
+    ambulance_name = input("Podaj nazwę oddziału, w którego chcesz edytować listę pacjentów: ")
+    for ambulance in ambulances:
+        if ambulance['name'] == ambulance_name:
+            print("Lista pacjentów oddziału", ambulance_name, ":")
+            for patient in ambulance['patients']:
+                print(f"{patient['name']} {patient['surname']} {patient['incident']} {patient['coordinates']}")
+            while True:
+                edit_choice = input("Podaj imię i nazwisko pacjenta, którego chcesz edytować (lub 'exit' aby zakończyć edycję): ")
+                if edit_choice.lower() == 'exit':
+                    break
+                for patient in ambulance['patients']:
+                    if f"{patient['name']} {patient['surname']}".lower() == edit_choice.lower():
+                        print("Edycja pacjenta: ", edit_choice)
+                        patient['name'] = input("Podaj nowe imię: ")
+                        patient['surname'] = input("Podaj nowe nazwisko: ")
+                        patient['incident'] = input("Podaj nową przyczyne zgłoszenia: ")
+                        patient['latitude'] = float(input("Podaj nową szerokość geograficzną pacjenta (lub pozostaw puste, aby nie zmieniać): "))
+                        patient['longitude'] = float(input("Podaj nową długość geograficzną pacjenta (lub pozostaw puste, aby nie zmieniać): "))
+                        coordinates = (patient['longitude'], patient['latitude'])
+                        print("Pacjent zedytowany pomyślnie!")
+                        break
+                else:
+                    print("Pacjent o podanym imieniu i nazwisku nie został znaleziony.")
+            return
+    print("Oddział o podanej nazwie nie został znaleziony w liście.")
+
+def delete_patient(ambulances):
+    ambulance_name = input("Podaj nazwę oddziału, w którego chcesz usunąć pacjenta: ")
+    for ambulance in ambulances:
+        if ambulance['name'] == ambulance_name:
+            print("Lista pacjentów oddziału", ambulance_name, ":")
+            for patient in ambulance['patients']:
+                print(f"{patient['name']} {patient['surname']} {patient['incident']} {patient['coordinates']}")
+            while True:
+                edit_choice = input("Podaj imię i nazwisko pacjenta, którego chcesz usunąć (lub 'exit' aby zakończyć edycję): ")
+                if edit_choice.lower() == 'exit':
+                    break
+                for patient in ambulance['patients']:
+                    if f"{patient['name']} {patient['surname']}".lower() == edit_choice.lower():
+                        ambulance['patients'].remove(patient)
+                        print("Pacjent został usunięty")
+                        break
+                else:
+                    print("Pacjent o podanym imieniu i nazwisku nie został znaleziony.")
             return
     print("Oddział o podanej nazwie nie został znaleziony w liście.")
