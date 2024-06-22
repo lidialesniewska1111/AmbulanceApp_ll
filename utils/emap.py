@@ -1,18 +1,22 @@
 import folium
-
+import requests
+from bs4 import BeautifulSoup
 
 def map_ambulance(ambulances):
-    map = folium.Map(location=[52.250821, 20.894949], zoom_start=12)
+    lista_wspolrzednych = []
+    map = folium.Map(location=[52, 21], zoom_start=6)
     for ambulance in ambulances:
-        latitude = ambulance['coordinates']['latitude']
-        longitude = ambulance['coordinates']['longitude']
+        url: str = f'https://pl.wikipedia.org/wiki/{ambulance['location']}'
+        response = requests.get(url)
+        response_html = BeautifulSoup(response.text, 'html.parser')
+        latitude = response_html.select('.latitude')[1].text.replace(",",".")
+        longitude = response_html.select('.longitude')[1].text.replace(",",".")
         name = ambulance['name']
         folium.Marker(location=[latitude, longitude], popup=f"{name}").add_to(map)
     map.save('./Wszystkie Stacje Pogotowia Ratowniczego.html')
     print("Plik HTML został wygenerowany.")
-
 def map_employees(ambulances):
-    map = folium.Map(location=[52.240821, 20.895949], zoom_start=12)
+    map = folium.Map(location=[52.00, 20.00], zoom_start=6)
     for ambulance in ambulances:
         for employee in ambulance['employees']:
             latitude = employee['coordinates']['latitude']
@@ -24,7 +28,7 @@ def map_employees(ambulances):
     print("Plik HTML został wygenerowany.")
 
 def map_patients(ambulances):
-    map = folium.Map(location=[52.2468, 20.9491], zoom_start=11)
+    map = folium.Map(location=[52.2468, 20.9491], zoom_start=6)
     for ambulance in ambulances:
         for patient in ambulance['patients']:
             latitude = patient['coordinates']['latitude']
@@ -38,7 +42,7 @@ def map_patients(ambulances):
 
 def map_employee_ambulance(ambulances):
     ambulance_name = input("Wpisz Oddział Pogotowia Ratowniczego: ")
-    map = folium.Map(location=[52.240821, 20.895949], zoom_start=12)
+    map = folium.Map(location=[52.240821, 20.895949], zoom_start=6)
     for ambulance in ambulances:
         if ambulance['name'] == ambulance_name:
             for employee in ambulance['employees']:
@@ -52,7 +56,7 @@ def map_employee_ambulance(ambulances):
 
 def map_patient_ambulance(ambulances):
     ambulance_name = input("Wpisz Oddział Pogotowia Ratowniczego: ")
-    map = folium.Map(location=[52.240821, 20.895949], zoom_start=12)
+    map = folium.Map(location=[52.240821, 20.895949], zoom_start=6)
     for ambulance in ambulances:
         if ambulance['name'] == ambulance_name:
             for patient in ambulance['patients']:

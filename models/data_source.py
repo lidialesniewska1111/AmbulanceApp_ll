@@ -1,8 +1,8 @@
 ambulances = [
     {
-        "name": "Oddział Pogotowia Ratowniczego Bemowo",
-        "address": "Kartezjusza 2, Warszawa",
-        "coordinates": {"latitude": 52.250821, "longitude": 20.894949},
+        "name": "Oddział Pogotowia Ratowniczego Warszawa",
+        "address": "Kartezjusza 2",
+        "location": "Warszawa",
         "employees": [
             {"name": "Julian", "surname": "Pasierowski", "coordinates": {"latitude": 52.240821, "longitude": 20.895949}},
             {"name": "Karolina", "surname": "Nowicka", "coordinates": {"latitude": 52.220821, "longitude": 20.814949}},
@@ -15,33 +15,33 @@ ambulances = [
         ]
     },
     {
-        "name": "Oddział Pogotowia Ratowniczego Wola",
-        "address": "Kasprzaka 17, Warszawa",
-        "coordinates": {"latitude": 52.227050, "longitude": 20.971534},
+        "name": "Oddział Pogotowia Ratowniczego Gdańsk",
+        "address": "Białowieska 1",
+        "location": "Gdańsk",
         "employees": [
-            {"name": "Arkadiusz", "surname": "Derkus", "coordinates": {"latitude": 52.217050, "longitude": 20.941534}},
-            {"name": "Julia", "surname": "Paluszyńska", "coordinates": {"latitude": 52.225050, "longitude": 20.911534}},
-            {"name": "Tobiasz", "surname": "Zarzycki", "coordinates": {"latitude": 52.207050, "longitude": 20.801534}}
+            {"name": "Arkadiusz", "surname": "Derkus", "coordinates": {"latitude": 54.32697, "longitude": 18.63733}},
+            {"name": "Julia", "surname": "Paluszyńska", "coordinates": {"latitude": 54.335329, "longitude": 18.652674}},
+            {"name": "Tobiasz", "surname": "Zarzycki", "coordinates": {"latitude": 54.34829, "longitude": 18.66234}}
         ],
         "patients": [
-            {"name": "Aleksandra", "surname": "Bogdańska", "incident": "zawał", "coordinates": {"latitude": 52.2468, "longitude": 20.9491}},
-            {"name": "Jan", "surname": "Jankowski", "incident": "omdlenie", "coordinates": {"latitude": 52.2214, "longitude": 20.9327}},
-            {"name": "Sylwia", "surname": "Goc", "incident": "Wypadek samochodowy", "coordinates": {"latitude": 52.2388, "longitude": 20.9663}}
+            {"name": "Aleksandra", "surname": "Bogdańska", "incident": "zawał", "coordinates": {"latitude": 54.382093, "longitude": 18.626448}},
+            {"name": "Jan", "surname": "Jankowski", "incident": "omdlenie", "coordinates": {"latitude": 54.356570, "longitude": 18.58057}},
+            {"name": "Sylwia", "surname": "Goc", "incident": "Wypadek samochodowy", "coordinates": {"latitude": 54.39846, "longitude": 18.59344}}
         ]
     },
     {
-        "name": "Oddział Pogotowia Ratowniczego Ursus",
-        "address": "Sosnkowskiego 18, Warszawa",
-        "coordinates": {"latitude": 52.191670, "longitude": 20.888521},
+        "name": "Oddział Pogotowia Ratowniczego Kraków",
+        "address": "Łazarza 14",
+        "location": "Kraków",
         "employees": [
-            {"name": "Łukasz", "surname": "Stefanowski", "coordinates": {"latitude": 52.291670, "longitude": 20.878521}},
-            {"name": "Renata", "surname": "Leśniewska", "coordinates": {"latitude": 52.301670, "longitude": 20.848521}},
-            {"name": "Marta", "surname": "Konczalska", "coordinates": {"latitude": 52.299670, "longitude": 20.858521}}
+            {"name": "Łukasz", "surname": "Stefanowski", "coordinates": {"latitude": 50.057665, "longitude": 19.96503}},
+            {"name": "Renata", "surname": "Leśniewska", "coordinates": {"latitude": 50.067981, "longitude": 19.926673}},
+            {"name": "Marta", "surname": "Konczalska", "coordinates": {"latitude": 50.049514, "longitude": 19.937012}}
         ],
         "patients": [
-            {"name": "Natalia", "surname": "Skwira", "incident": "padaczka", "coordinates": {"latitude": 52.253, "longitude": 21.017}},
-            {"name": "Iza", "surname": "Goławska", "incident": "poród", "coordinates": {"latitude": 52.255, "longitude": 21.134}},
-            {"name": "Gracjan", "surname": "Biarda", "incident": "pobicie", "coordinates": {"latitude": 52.285, "longitude": 21.094}}
+            {"name": "Natalia", "surname": "Skwira", "incident": "padaczka", "coordinates": {"latitude": 50.025761, "longitude": 19.931736}},
+            {"name": "Iza", "surname": "Goławska", "incident": "poród", "coordinates": {"latitude": 50.068183, "longitude": 19.927838}},
+            {"name": "Gracjan", "surname": "Biarda", "incident": "pobicie", "coordinates": {"latitude": 50.044005, "longitude": 19.976849}}
         ]
     }
 ]

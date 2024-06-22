@@ -41,16 +41,14 @@ def display_ambulance(ambulances):
     for ambulance in ambulances:
         print("Oddział:", ambulance['name'])
         print("Adres:", ambulance['address'])
-        print("Współrzędne:", ambulance['coordinates'])
+        print("Lokalizacja:", ambulance['location'])
 
 
 def add_ambulance(ambulances):
     name_oddzialu = input("Podaj nazwę oddziału: ")
     address = input("Podaj adres oddziału: ")
-    latitude = float(input("Podaj szerokość geograficzną odziału: "))
-    longitude = float(input("Podaj długość geograficzną oddziału: "))
-    coordinates = (longitude, latitude)
-    ambulance = {"name": name_oddzialu, "address": address, "coordinates": coordinates}
+    location = (input("Podaj miasto, w którym znajduje się oddział: "))
+    ambulance = {"name": name_oddzialu, "address": address, "location": location}
     ambulances.append(ambulance)
     print("Oddział został dodany do listy.")
 
@@ -74,12 +72,8 @@ def edit_ambulance(ambulances):
                                 ambulance['name_oddzialu']
             ambulance['address'] = input("Podaj nowy adres oddziału (lub pozostaw puste, aby nie zmieniać): ") or \
                                    ambulance['address']
-            latitude = input("Podaj nową szerokość geograficzną oddziału (lub pozostaw puste, aby nie zmieniać): ")
-            if latitude:
-                ambulance['coordinates']['latitude'] = float(latitude)
-            longitude = input("Podaj nową długość geograficzną oddziału (lub pozostaw puste, aby nie zmieniać): ")
-            if longitude:
-                ambulance['coordinates']['longitude'] = float(longitude)
+            ambulance['location'] = input("Podaj nowe miasto, w którym znajduje się oddział (lub pozostaw puste, aby nie zmieniać): ") or \
+                                   ambulance['location']
         print("Dane Oddziału zostały zaktualizowane.")
         return
     print("Oddział o podanej nazwie nie został znaleziony w liście.")
@@ -102,8 +96,7 @@ def add_employee(ambulances):
             surname = input("Podaj nazwisko nowego pracownika: ")
             latitude = float(input("Podaj szerokość geograficzną pracownika: "))
             longitude = float(input("Podaj długość geograficzną pracownika: "))
-            coordinates = (longitude, latitude)
-            ambulance['employees'].append({'name': name, 'surname': surname, 'coordinates': coordinates})
+            ambulance['employees'].append({'name': name, 'surname': surname, 'coordinates': {'latitude': latitude, 'longitude':longitude}})
             print("Pracownik dodany pomyślnie!")
 
 def edit_employee(ambulances):
@@ -171,8 +164,8 @@ def add_patient(ambulances):
             incident = input("Podaj przyczynę zgłoszenia: ")
             latitude = float(input("Podaj szerokość geograficzną pacjenta: "))
             longitude = float(input("Podaj długość geograficzną pacjenta: "))
-            coordinates = (longitude, latitude)
-            ambulance['patients'].append({'name': name, 'surname': surname, 'incident': incident, 'coordinates': coordinates})
+            coordinates = (latitude, longitude)
+            ambulance['patients'].append({'name': name, 'surname': surname, 'incident': incident, 'coordinates': {'latitude': latitude, 'longitude':longitude}})
             print("Pacjent dodany pomyślnie!")
 
 def edit_patient(ambulances):
